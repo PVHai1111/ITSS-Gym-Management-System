@@ -16,3 +16,11 @@ module.exports.storeReturnTo = (req, res, next) => {
     }
     next();
 };
+
+module.exports.isAdmin = (req, res, next) => {
+    if (!req.isAuthenticated() || req.user.role !== 'admin') {
+        req.flash('error', 'You do not have permission to do that!');
+        return res.redirect('/');
+    }
+    next();
+};
