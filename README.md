@@ -1,1 +1,1 @@
-# ITSS-Gym-Management-System
+# KTPM-Gym-Management-System
