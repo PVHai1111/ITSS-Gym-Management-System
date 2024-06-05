@@ -74,4 +74,10 @@ module.exports.verifyEmployeeId = async (req, res, next) => {
         }
         req.employee = employee;
         next();
+    } catch (err) {
+        console.error('Error verifying employee ID:', err);
+        req.flash('error', 'An error occurred while verifying the employee ID');
+        return res.redirect('/verifyEmployeeId');
+    }
+};
 

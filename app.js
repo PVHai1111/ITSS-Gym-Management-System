@@ -79,3 +79,14 @@ app.use('/enroll', enrollRoutes);
 app.get('/admin', isLoggedIn, isAdmin, (req, res) => {
     res.render('admin');
 });
+
+app.get('/', (req, res) => {
+    if (req.user && req.user.role === 'admin') {
+        return res.redirect('/admin');
+    }
+    res.render('home');
+});
+
+app.listen(3000, () => {
+    console.log('Serving on port 3000');
+});
