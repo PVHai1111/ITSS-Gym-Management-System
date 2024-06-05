@@ -7,3 +7,15 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 const ejsMate = require('ejs-mate');
 const passport = require('passport');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
+require('dotenv').config();
+const { isLoggedIn, isAdmin, isEmployeeOrAdmin } = require('./middleware');
+
+mongoose.connect('mongodb://127.0.0.1:27017/gym');
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+    console.log('Database connected');
+});

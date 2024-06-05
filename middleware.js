@@ -7,3 +7,12 @@ module.exports.isLoggedIn = (req, res, next) => {
         req.flash('error', 'Vui lòng đăng nhập');
         return res.redirect('/login');
     }
+    next();
+};
+
+module.exports.storeReturnTo = (req, res, next) => {
+    if (req.session.returnTo) {
+        res.locals.returnTo = req.session.returnTo;
+    }
+    next();
+};
