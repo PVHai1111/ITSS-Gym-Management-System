@@ -57,3 +57,12 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
     res.render('home');
 });
+
+const roomRoutes = require('./routes/rooms');
+const equipmentRoutes = require('./routes/equipments');
+const memberRoutes = require('./routes/members');
+const membershipRoutes = require('./routes/memberships');
+const employeeRoutes = require('./routes/employees');
+const memberFeedbackRoutes = require('./routes/memberFeedbacks');
+const userRoutes = require('./routes/users');
+const enrollRoutes = require('./routes/enroll');

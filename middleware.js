@@ -49,3 +49,12 @@ module.exports.verifyMemberId = async (req, res, next) => {
     req.member = member;
     next();
 };
+
+module.exports.isEmployeeOrAdmin = (req, res, next) => {
+    if (!req.isAuthenticated() || (req.user.role !== 'admin' && req.user.role !== 'employee')) {
+        req.flash('error', 'You do not have permission to do that!');
+        return res.redirect('/');
+    }
+    next();
+};
+
