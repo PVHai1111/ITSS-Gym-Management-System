@@ -66,3 +66,16 @@ const employeeRoutes = require('./routes/employees');
 const memberFeedbackRoutes = require('./routes/memberFeedbacks');
 const userRoutes = require('./routes/users');
 const enrollRoutes = require('./routes/enroll');
+
+app.use('/rooms', roomRoutes);
+app.use('/equipments', equipmentRoutes);
+app.use('/members', memberRoutes);
+app.use('/memberships', membershipRoutes);
+app.use('/employees', isLoggedIn, isEmployeeOrAdmin, employeeRoutes);
+app.use('/memberFeedbacks', memberFeedbackRoutes);
+app.use('/', userRoutes);
+app.use('/enroll', enrollRoutes);
+
+app.get('/admin', isLoggedIn, isAdmin, (req, res) => {
+    res.render('admin');
+});

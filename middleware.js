@@ -58,3 +58,20 @@ module.exports.isEmployeeOrAdmin = (req, res, next) => {
     next();
 };
 
+module.exports.verifyEmployeeId = async (req, res, next) => {
+    const { employeeId } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(employeeId)) {
+        req.flash('error', 'Invalid employee ID format');
+        return res.redirect('/verifyEmployeeId');
+    }
+
+    try {
+        const employee = await Employee.findById(employeeId);
+        if (!employee) {
+            req.flash('error', 'Invalid employee ID');
+            return res.redirect('/verifyEmployeeId');
+        }
+        req.employee = employee;
+        next();
+
